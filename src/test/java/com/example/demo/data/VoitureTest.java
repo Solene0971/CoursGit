@@ -40,6 +40,6 @@ public class VoitureTest {
     @Test
     void creerVoiture5(){
         Voiture v = new Voiture("Ferrari", 2000);
-        assertEquals("Car{marque='Ferrari', prix=2000, id=}", v.toString());
+        assertEquals("Car{marque='Ferrari', prix=2000, id=0}", v.toString());
     }
 }
