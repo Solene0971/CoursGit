@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.data.Voiture;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
