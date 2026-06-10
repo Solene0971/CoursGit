@@ -1,6 +1,7 @@
 package com.example.demo.data;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.*;
 
@@ -9,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class VoitureTest {
 
-    Voiture v;
+    private Voiture v;
 
     @BeforeEach
     void init(){
