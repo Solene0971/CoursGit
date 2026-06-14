@@ -30,8 +30,24 @@ public class StatistiqueTests {
     }
 
     @Test
-    void testStatistiqueEmpty() {
+    void testStatistique2() {
+        Voiture v1 = new Voiture("Ferrari", 2000);
+        statistique.ajouter(v1);
+        Echantillon echantillon = statistique.prixMoyen();
+        assertEquals(2000, echantillon.getPrixMoyen());
+        assertEquals(1, echantillon.getNombreDeVoitures());
+    }
+
+    @Test
+    void testStatistiqueVide() {
         assertThrows(ArithmeticException.class, statistique::prixMoyen);
+    }
+
+    @Test
+    void testStatistiqueZero() {
+        Echantillon echantillon = statistique.prixMoyen();
+        assertEquals(0, echantillon.getPrixMoyen());
+        assertEquals(0, echantillon.getNombreDeVoitures());
     }
 
 }
