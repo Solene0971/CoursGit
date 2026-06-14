@@ -18,31 +18,31 @@ public class VoitureTest {
     }
 
     @Test
-    void creerVoiture(){
+    void testSetPrix(){
         v.setPrix(2500);
         assertEquals(2500, v.getPrix());
     }
     
     @Test
-    void creerVoiture2(){
+    void testSetId(){
         v.setId(1);
         assertEquals(1, v.getId());
     }
 
     @Test
-    void creerVoiture3(){
+    void testSetMarque(){
         v.setMarque("Porsche");
         assertEquals("Porsche", v.getMarque());
     }
 
     @Test
-    void creerVoiture4(){
+    void testSetPrixZero(){
         v.setPrix(0);
         assertEquals(0, v.getPrix());
     }
 
     @Test
-    void creerVoiture5(){
+    void testCreerVoitureSimple(){
         assertEquals("Car{marque='Ferrari', prix=2000, id=0}", v.toString());
     }
 }
