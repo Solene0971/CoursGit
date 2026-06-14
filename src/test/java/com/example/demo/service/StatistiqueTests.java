@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 public class StatistiqueTests {
 
-    StatistiqueImpl statistique;
+    private StatistiqueImpl statistique;
 
     @BeforeEach
     void init() {
@@ -31,7 +31,7 @@ public class StatistiqueTests {
 
     @Test
     void testStatistiqueEmpty() {
-        assertThrows(IllegalStateException.class, statistique::prixMoyen);
+        assertThrows(ArithmeticException.class, statistique::prixMoyen);
     }
 
 }
