@@ -18,6 +18,12 @@ public class VoitureTest {
     }
 
     @Test
+    void testVoitureVide(){
+        v = new Voiture();
+        assertEquals("Car{marque='null', prix=0, id=0}", v.toString());
+    }
+
+    @Test
     void testSetPrix(){
         v.setPrix(2500);
         assertEquals(2500, v.getPrix());
