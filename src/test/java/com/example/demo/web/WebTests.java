@@ -56,9 +56,9 @@ class WebTests {
 
     @Test
     void testgetStatistiquesVide() throws Exception {
-        when(statistiqueImpl.prixMoyen()).thenThrow(new PasDeVoitureException()); // quand la méthode prixMoyen est appelée lève une exception
+        when(statistiqueImpl.prixMoyen()).thenThrow(new ArithmeticException()); // quand la méthode prixMoyen est appelée lève une exception
         mockMvc.perform(get("/statistique"))
                 .andDo(print())
-                .andExpect(status().isInternalServerError());                   // attend un code de retour 500 (erreur serveur)
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof PasDeVoitureException));                   // vérifie que PasDeVoitureException est levée
     }
 }
