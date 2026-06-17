@@ -27,6 +27,15 @@ class WebTests {
     @Autowired
     MockMvc mockMvc;
 
+    @Test
+    void testcreerVoitures() throws Exception {
+        mockMvc.perform(post("/voiture")                                        // POST vers le chemin /voiture
+                        .contentType(MediaType.APPLICATION_JSON)                // la requête prend du JSON
+                        .content("{\"marque\":\"Subaru\", \"prix\": 100}"))     // les paramètres de la requête (en JSON)
+                        .andDo(print())                                         // affiche les logs en console
+                        .andExpect(status().isOk());                            // attend un code de retour 200 (pas d'erreur)
+        verify(statistiqueImpl, times(1)).ajouter(any(Voiture.class));}"))      // vérifie que la méthode ajouter a été appelée une fois avec n'importe quelle voiture
+
   
 
 }
