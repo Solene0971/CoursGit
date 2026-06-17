@@ -27,6 +27,7 @@ class WebTests {
     @Autowired
     MockMvc mockMvc;
 
+    // on test les méthodes du controller
     @Test
     void testcreerVoitures() throws Exception {
         mockMvc.perform(post("/voiture")                                        // POST vers le chemin /voiture
@@ -34,5 +35,28 @@ class WebTests {
                         .content("{\"marque\":\"Subaru\", \"prix\": 100}"))     // les paramètres de la requête (en JSON)
                         .andDo(print())                                         // affiche les logs en console
                         .andExpect(status().isOk());                            // attend un code de retour 200 (pas d'erreur)
-        verify(statistiqueImpl, times(1)).ajouter(any(Voiture.class));}      // vérifie que la méthode ajouter a été appelée une fois avec n'importe quelle voiture
-}
+        verify(statistiqueImpl, times(1)).ajouter(any(Voiture.class));}         // vérifie que la méthode ajouter a été appelée une fois avec n'importe quelle voiture
+
+
+    @Test
+    void testgetStatistiques() throws Exception {
+        // simule l'objet retourné par prixMoyen avec un Echantillon mocké
+        Echantillon MockEchantillon = new Echantillon();
+        MockEchantillon.setPrixMoyen(100);
+
+        when(statistiqueImpl.prixMoyen()).thenReturn(MockEchantillon);          // quand la méthode prixMoyen est appelée return un échantillon mocké
+
+        mockMvc.perform(get("/statistique"))                                    // GET vers le chemin /statistique
+                .andDo(print())                                                 // affiche les logs en console
+                .andExpect(status().isOk());                                    // attend un code de retour 200 (pas d'erreur)
+                .andExpect(jsonPath("$.prixMoyen").value(100));                 // vérifie que le controller a bien retourné la donnée
+    }
+
+
+    @Test
+    void testgetStatistiquesVide() throws Exception {
+        when(statistiqueImpl.prixMoyen()).thenThrow(new ArithmeticException()); // quand la méthode prixMoyen est appelée lève une exception
+        mockMvc.perform(get("/statistique"))
+                .andDo(print())
+                .andExpect(status().isInternalServerError());                   // attend un code de retour 500 (erreur serveur)
+    }
