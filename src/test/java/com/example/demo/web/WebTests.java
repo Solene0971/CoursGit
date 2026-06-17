@@ -35,7 +35,8 @@ class WebTests {
                         .content("{\"marque\":\"Subaru\", \"prix\": 100}"))     // les paramètres de la requête (en JSON)
                         .andDo(print())                                         // affiche les logs en console
                         .andExpect(status().isOk());                            // attend un code de retour 200 (pas d'erreur)
-        verify(statistiqueImpl, times(1)).ajouter(any(Voiture.class));}         // vérifie que la méthode ajouter a été appelée une fois avec n'importe quelle voiture
+        verify(statistiqueImpl, times(1)).ajouter(any(Voiture.class));         // vérifie que la méthode ajouter a été appelée une fois avec n'importe quelle voiture
+    }
 
 
     @Test
@@ -48,7 +49,7 @@ class WebTests {
 
         mockMvc.perform(get("/statistique"))                                    // GET vers le chemin /statistique
                 .andDo(print())                                                 // affiche les logs en console
-                .andExpect(status().isOk());                                    // attend un code de retour 200 (pas d'erreur)
+                .andExpect(status().isOk())                                     // attend un code de retour 200 (pas d'erreur)
                 .andExpect(jsonPath("$.prixMoyen").value(100));                 // vérifie que le controller a bien retourné la donnée
     }
 
@@ -60,3 +61,4 @@ class WebTests {
                 .andDo(print())
                 .andExpect(status().isInternalServerError());                   // attend un code de retour 500 (erreur serveur)
     }
+}
