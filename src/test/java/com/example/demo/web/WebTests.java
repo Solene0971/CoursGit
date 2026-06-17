@@ -35,7 +35,5 @@ class WebTests {
                         .andDo(print())                                         // affiche les logs en console
                         .andExpect(status().isOk());                            // attend un code de retour 200 (pas d'erreur)
         verify(statistiqueImpl, times(1)).ajouter(any(Voiture.class));}"))      // vérifie que la méthode ajouter a été appelée une fois avec n'importe quelle voiture
-
-  
-
+    }
 }
